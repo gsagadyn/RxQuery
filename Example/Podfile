@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxQuery_Example' do
+  pod 'RxQuery', :path => '../'
+
+  target 'RxQuery_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
