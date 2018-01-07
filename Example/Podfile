@@ -1,11 +1,10 @@
 use_frameworks!
+platform :ios, '10.3'
 
 target 'RxQuery_Example' do
   pod 'RxQuery', :path => '../'
 
   target 'RxQuery_Tests' do
     inherit! :search_paths
-
-    
   end
 end

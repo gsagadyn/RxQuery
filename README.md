@@ -1,9 +1,6 @@
 # RxQuery
 
-[![CI Status](http://img.shields.io/travis/gsagadyn/RxQuery.svg?style=flat)](https://travis-ci.org/gsagadyn/RxQuery)
-[![Version](https://img.shields.io/cocoapods/v/RxQuery.svg?style=flat)](http://cocoapods.org/pods/RxQuery)
-[![License](https://img.shields.io/cocoapods/l/RxQuery.svg?style=flat)](http://cocoapods.org/pods/RxQuery)
-[![Platform](https://img.shields.io/cocoapods/p/RxQuery.svg?style=flat)](http://cocoapods.org/pods/RxQuery)
+Extension of RxSwift pod.
 
 ## Example
 
@@ -11,18 +8,24 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+- iOS 10.3+
+- Xcode 9
+- Swift 4.0
+
 ## Installation
 
 RxQuery is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
+source 'https://github.com/gsagadyn/CocoaPodsSpecs.git's
+
 pod 'RxQuery'
 ```
 
 ## Author
 
-gsagadyn, sagadyn@gmail.com
+Grzegorz Sagadyn, sagadyn@gmail.com
 
 ## License
 
