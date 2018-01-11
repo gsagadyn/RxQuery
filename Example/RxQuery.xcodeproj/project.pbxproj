@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F02337420029695001B654B /* HttpbinInternetQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F02337320029695001B654B /* HttpbinInternetQuery.swift */; };
+		2FC6FE4C200768EC00302C3A /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC6FE4B200768EC00302C3A /* ResponseModel.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2F02337320029695001B654B /* HttpbinInternetQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpbinInternetQuery.swift; sourceTree = "<group>"; };
+		2FC6FE4B200768EC00302C3A /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		54C0C137E401B71D6A38E14E /* Pods-RxQuery_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxQuery_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxQuery_Tests/Pods-RxQuery_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RxQuery_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxQuery_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		607FACD21AFB9204008FA782 /* Example for RxQuery */ = {
 			isa = PBXGroup;
 			children = (
+				2FC6FE4B200768EC00302C3A /* ResponseModel.swift */,
 				2F02337320029695001B654B /* HttpbinInternetQuery.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -277,12 +280,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxQuery/RxQuery.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxQuery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,6 +384,7 @@
 			files = (
 				2F02337420029695001B654B /* HttpbinInternetQuery.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				2FC6FE4C200768EC00302C3A /* ResponseModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

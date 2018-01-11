@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxQuery'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Extension of RxSwift pod'
   s.homepage         = 'https://github.com/gsagadyn/RxQuery'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -10,16 +10,21 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.3'
   s.frameworks = 'UIKit', 'Foundation'
   s.requires_arc = true
-  s.default_subspecs = 'Core', 'Internet'
+  s.default_subspecs = 'Core', 'Internet', 'Model'
   s.dependency 'RxSwift'
-  s.dependency 'Alamofire'
 
   s.subspec 'Core' do |sp|
-    s.source_files = 'RxQuery/Core/**/*'
+    sp.source_files = 'RxQuery/Core/**/*'
   end
 
   s.subspec 'Internet' do |sp|
     sp.source_files = 'RxQuery/Core/**/*', 'RxQuery/Internet/**/*'
+    sp.dependency 'Alamofire'
+  end
+
+  s.subspec 'Model' do |sp|
+    sp.source_files = 'RxQuery/Model/**/*'
+    sp.dependency 'SwiftyJSON'
   end
 
 end
