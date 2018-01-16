@@ -1,5 +1,5 @@
 //
-//  ObserverType+onCompleted.swift
+//  ObserverType+Event.swift
 //  RxQuery
 //
 //  Created by Grzegorz Sagadyn on 11.01.2018.

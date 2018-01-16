@@ -19,7 +19,7 @@ public extension Observable where Element == SwiftyJSON.JSON {
     public func map<T: IModelJson>(to type: T.Type) -> Observable<T> {
         return flatMap { jsonObject -> Single<T> in
             guard let obj = T(jsonData: JSON(jsonObject)) else {
-                throw ModelError.jsonMapping
+                throw RxQueryError.jsonMap(T.self)
             }
             
             return .just(obj)

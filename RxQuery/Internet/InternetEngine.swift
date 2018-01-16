@@ -10,10 +10,10 @@ import RxSwift
 import Alamofire
 
 /// Executes internet requests
-open class InternetEngine<T>: RxEngine {
+open class InternetEngine: RxEngine {
     
     public typealias QueryType = InternetQuery
-    public typealias ResultType = T
+    public typealias ResultType = Foundation.Data
     
     private var request: DataRequest?
     private var method: HTTPMethod = HTTPMethod.get
@@ -24,10 +24,16 @@ open class InternetEngine<T>: RxEngine {
     /// Set of queries
     public var queries: [InternetQuery]!
     
-    private init() { }
+    /// Initializes Internet Engine
+    ///
+    /// - parameters:
+    ///   - method: Request method.
+    public init(_ method: HTTPMethod = HTTPMethod.get) {
+        self.method = method
+    }
     
     // ----------------------------------------------------------------------------------------------------------------
-    //MARK: - Implementation of RxEngine.
+    // MARK: - Implementation of RxEngine.
     // ----------------------------------------------------------------------------------------------------------------
     
     public func start(observer: AnyObserver<ResultType>, disposable: Disposable, queries: [InternetQuery]) {
@@ -44,7 +50,7 @@ open class InternetEngine<T>: RxEngine {
     }
     
     // ----------------------------------------------------------------------------------------------------------------
-    //MARK: - Internet request performing.
+    // MARK: - Internet request performing.
     // ----------------------------------------------------------------------------------------------------------------
     
     /// Performs internet requests
@@ -55,77 +61,20 @@ open class InternetEngine<T>: RxEngine {
         let h = query?.headers()
         
         request = Alamofire.request(u, method: method, parameters: p, encoding: e, headers: h)
-        request?.response(completionHandler: { [weak self] in self?.handleInternetResponse($0) } )
+        request!.validate().responseData(completionHandler: { [weak self] in self?.handleInternetResponse($0) })
     }
     
     /// Handles internet request response.
     ///
     /// - parameters:
     ///   - dataResponse: Response representation.
-    open func handleInternetResponse(_ dataResponse: DefaultDataResponse) {
-        let r = dataResponse.response
-        let d = dataResponse.data
-        let e = dataResponse.error
-        
-        if let err = dataResponse.error {
-            observer.onError(err)
-            return
+    open func handleInternetResponse(_ dataResponse: Alamofire.DataResponse<Data>) {
+        if let error = dataResponse.error {
+            observer.onError(error)
+        } else {
+            observer.onCompleted(dataResponse.data ?? Data())
+            observer.onCompleted()
         }
-        
-        switch ResultType.self {
-        case is String.Type:
-            let result = Request.serializeResponseString(encoding: nil, response: r, data: d, error: e)
-            observer.onNext((result.value ?? "") as! T)
-            break
-        case is Data.Type:
-            let result = Request.serializeResponseData(response: r, data: d, error: e)
-            observer.onNext((result.value ?? Data()) as! T)
-            break
-        default:
-            break
-        }
-        
-        observer.onCompleted()
     }
     
 }
-
-public extension InternetEngine where T == String {
-    
-    /// Initializes Internet Engine
-    ///
-    /// - parameters:
-    ///   - method: Request method.
-    public convenience init(_ method: HTTPMethod = HTTPMethod.get) {
-        self.init()
-        self.method = method
-    }
-    
-}
-
-public extension InternetEngine where T == Data {
-    
-    /// Initializes Internet Engine
-    ///
-    /// - parameters:
-    ///   - method: Request method.
-    public convenience init(_ method: HTTPMethod = HTTPMethod.get) {
-        self.init()
-        self.method = method
-    }
-    
-}
-
-public extension InternetEngine where T == Void {
-    
-    /// Initializes Internet Engine
-    ///
-    /// - parameters:
-    ///   - method: Request method.
-    public convenience init(_ method: HTTPMethod = HTTPMethod.get) {
-        self.init()
-        self.method = method
-    }
-    
-}
-

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxQuery'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'Extension of RxSwift pod'
   s.homepage         = 'https://github.com/gsagadyn/RxQuery'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Model' do |sp|
-    sp.source_files = 'RxQuery/Model/**/*'
+    sp.source_files = 'RxQuery/Core/**/*', 'RxQuery/Model/**/*'
     sp.dependency 'SwiftyJSON'
   end
 

@@ -10,7 +10,7 @@ import Foundation
 import RxQuery
 import SwiftyJSON
 
-class ResponseModel: IModelJson, IModelValidate, CustomStringConvertible {
+class ResponseModel: IModelJson, IModelValidation, CustomStringConvertible {
     
     let argumentName: String
     
@@ -26,7 +26,7 @@ class ResponseModel: IModelJson, IModelValidate, CustomStringConvertible {
     }
     
     func validate() -> Error? {
-        return argumentName == "argument_value" ? nil : ModelError.modelValidate
+        return argumentName == "argument_value" ? nil : RxQueryError.modelValidation(self)
     }
     
 }

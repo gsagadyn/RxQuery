@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Observable<String>
+        Observable
             .create(InternetEngine(HTTPMethod.post), { observer -> Disposable in
                 let query = TestInternetQuery()
                 query.argument_name = "argument_value"
