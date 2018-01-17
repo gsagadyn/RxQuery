@@ -9,13 +9,10 @@ import Foundation
 
 public enum RxQueryError: Swift.Error {
     
-    /// Indicates a JSON structure failed to map to a object.
-    case jsonMap(Any.Type)
-    
     /// Indicates a Data failed to map to a String object.
     case dataToStringConvert(Data)
     
     /// Indicates a model validation failed.
-    case modelValidation(AnyObject)
+    case modelValidation(Any)
     
 }

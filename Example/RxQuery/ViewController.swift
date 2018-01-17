@@ -33,8 +33,7 @@ class ViewController: UIViewController {
                 observer.onCompleted(query)
                 return Disposables.create()
             })
-            .json()
-            .map(to: ResponseModel.self)
+            .decode(to: ResponseModel.self)
             .validate()
             .subscribe(onNext: { (r) in
                 print("response \(r)")

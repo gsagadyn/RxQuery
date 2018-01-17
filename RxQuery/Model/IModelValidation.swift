@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents model which can be validated.
-public protocol IModelValidation: class {
+public protocol IModelValidation {
     
     /// Performs validation.
     ///
