@@ -9,7 +9,7 @@
 import Foundation
 import RxQuery
 
-struct ResponseModel: Codable, IModelValidation {
+struct ResponseModel: Codable {
     let data: String
     let form: Form
     let origin: String
@@ -20,10 +20,6 @@ struct ResponseModel: Codable, IModelValidation {
         case form
         case origin
         case url
-    }
-    
-    func validate() -> Error? {
-        return form.argumentName == "argument_value" ? nil : RxQueryError.modelValidation(self)
     }
     
 }

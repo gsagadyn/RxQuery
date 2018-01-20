@@ -1,5 +1,5 @@
 //
-//  IInternetQuery.swift
+//  IHttpQuery.swift
 //  RxQuery
 //
 //  Created by Grzegorz Sagadyn on 06.01.2018.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 /// Represents internet query.
-public protocol IInternetQuery: RxQuery {
+public protocol IHttpQuery: RxQuery {
     
     /// Initializes query.
     init()

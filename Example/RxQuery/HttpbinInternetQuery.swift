@@ -1,5 +1,5 @@
 //
-//  TestInternetQuery.swift
+//  TestHttpQuery.swift
 //  RxQuery_Example
 //
 //  Created by Grzegorz Sagadyn on 07.01.2018.
@@ -9,7 +9,7 @@ import Foundation
 import RxQuery
 import Alamofire
 
-class TestInternetQuery: InternetQuery {
+class TestHttpQuery: HttpQuery {
     
     var argument_name: String?
     var __header__header_name: String?

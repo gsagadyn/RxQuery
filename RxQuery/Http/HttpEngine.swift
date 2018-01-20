@@ -1,5 +1,5 @@
 //
-//  InternetEngine.swift
+//  HttpEngine.swift
 //  RxQuery
 //
 //  Created by Grzegorz Sagadyn on 06.01.2018.
@@ -10,19 +10,19 @@ import RxSwift
 import Alamofire
 
 /// Executes internet requests
-open class InternetEngine: RxEngine {
+open class HttpEngine: RxEngine {
     
-    public typealias QueryType = InternetQuery
+    public typealias QueryType = HttpQuery
     public typealias ResultType = Foundation.Data
     
     private var request: DataRequest?
     private var method: HTTPMethod = HTTPMethod.get
     private var observer: AnyObserver<ResultType>!
     private var disposable: Disposable!
-    private var query: InternetQuery? { return queries.last }
+    private var query: HttpQuery? { return queries.last }
     
     /// Set of queries
-    public var queries: [InternetQuery]!
+    public private(set) var queries: [HttpQuery]!
     
     /// Initializes Internet Engine
     ///
@@ -36,7 +36,7 @@ open class InternetEngine: RxEngine {
     // MARK: - Implementation of RxEngine.
     // ----------------------------------------------------------------------------------------------------------------
     
-    public func start(observer: AnyObserver<ResultType>, disposable: Disposable, queries: [InternetQuery]) {
+    public func start(observer: AnyObserver<ResultType>, disposable: Disposable, queries: [HttpQuery]) {
         self.observer = observer
         self.disposable = disposable
         self.queries = queries

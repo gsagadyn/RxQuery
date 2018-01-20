@@ -25,16 +25,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         Observable
-            .create(InternetEngine(HTTPMethod.post), { observer -> Disposable in
-                let query = TestInternetQuery()
+            .create(HttpEngine(HTTPMethod.post), { observer -> Disposable in
+                let query = TestHttpQuery()
                 query.argument_name = "argument_value"
                 query.__header__header_name = "header_value"
                 
                 observer.onCompleted(query)
                 return Disposables.create()
             })
-            .decode(to: ResponseModel.self)
-            .validate()
             .subscribe(onNext: { (r) in
                 print("response \(r)")
             }, onError: { (e) in
