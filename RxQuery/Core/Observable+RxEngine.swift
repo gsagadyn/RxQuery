@@ -1,5 +1,5 @@
 //
-//  Observable+Engine.swift
+//  Observable+RxEngine.swift
 //  RxQuery
 //
 //  Created by Grzegorz Sagadyn on 06.01.2018.
@@ -34,8 +34,13 @@ public extension Observable {
     /// - returns: The observable sequence with the specified implementation for the `subscribe` method.
     private static func create<T: RxEngine>(_ engine: T, _ queries: [T.QueryType]) -> Observable<E> where T.ResultType == E {
         return .create { observer in
-            let disposable = Disposables.create { engine.stop() }
-            engine.start(observer: observer, disposable: disposable, queries: queries)
+            let publisher = PublishSubject<T.ResultType>()
+            let disposable = CompositeDisposable()
+            
+            _ = disposable.insert(publisher.subscribe(observer))
+            _ = disposable.insert(Disposables.create { engine.stop() })
+            engine.start(publisher: publisher, queries: queries)
+            
             return disposable
         }
     }

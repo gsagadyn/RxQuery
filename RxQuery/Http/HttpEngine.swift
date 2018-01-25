@@ -15,10 +15,10 @@ open class HttpEngine: RxEngine {
     public typealias QueryType = HttpQuery
     public typealias ResultType = Foundation.Data
     
+    private var sessionManager: SessionManager?
     private var request: DataRequest?
     private var method: HTTPMethod = HTTPMethod.get
-    private var observer: AnyObserver<ResultType>!
-    private var disposable: Disposable!
+    private var publisher: PublishSubject<ResultType>!
     private var query: HttpQuery? { return queries.last }
     
     /// Set of queries
@@ -36,13 +36,12 @@ open class HttpEngine: RxEngine {
     // MARK: - Implementation of RxEngine.
     // ----------------------------------------------------------------------------------------------------------------
     
-    public func start(observer: AnyObserver<ResultType>, disposable: Disposable, queries: [HttpQuery]) {
-        self.observer = observer
-        self.disposable = disposable
+    public func start(publisher: PublishSubject<ResultType>, queries: [HttpQuery]) {
+        self.publisher = publisher
         self.queries = queries
-        
+
         if let _ = query { performInternetRequest() }
-        else { observer.onCompleted() }
+        else { publisher.onCompleted() }
     }
     
     public func stop() {
@@ -55,25 +54,25 @@ open class HttpEngine: RxEngine {
     
     /// Performs internet requests
     open func performInternetRequest() {
-        let u = query?.url() ?? ""
-        let p = query?.parameters()
-        let e = query?.encoding() ?? URLEncoding.default
-        let h = query?.headers()
+        let url = query?.url() ?? ""
+        let parameters = query?.parameters()
+        let encoding = query?.encoding() ?? URLEncoding.default
+        let headers = query?.headers()
         
-        request = Alamofire.request(u, method: method, parameters: p, encoding: e, headers: h)
-        request!.validate().responseData(completionHandler: { [weak self] in self?.handleInternetResponse($0) })
+        sessionManager = SessionManager.default
+        request = sessionManager!.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+        request!.validate().response { [weak self] in self?.handleInternetResponse($0) }
     }
     
     /// Handles internet request response.
     ///
     /// - parameters:
     ///   - dataResponse: Response representation.
-    open func handleInternetResponse(_ dataResponse: Alamofire.DataResponse<Data>) {
-        if let error = dataResponse.error {
-            observer.onError(error)
+    open func handleInternetResponse(_ response: Alamofire.DefaultDataResponse) {
+        if let error = response.error {
+            publisher.onError(error)
         } else {
-            observer.onCompleted(dataResponse.data ?? Data())
-            observer.onCompleted()
+            publisher.onCompleted(response.data ?? Data())
         }
     }
     

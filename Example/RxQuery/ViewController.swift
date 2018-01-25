@@ -30,7 +30,8 @@ class ViewController: UIViewController {
                 query.argument_name = "argument_value"
                 query.__header__header_name = "header_value"
                 
-                observer.onCompleted(query)
+                observer.onNext(query)
+                observer.onCompleted()
                 return Disposables.create()
             })
             .subscribe(onNext: { (r) in

@@ -20,10 +20,9 @@ public protocol RxEngine {
     /// Starts perforimng set of queries.
     ///
     /// - parameters:
-    ///   - observer: Instance of Observer.
-    ///   - disposable: Instance of Disposable.
+    ///   - publisher: Instance of PublishSubject.
     ///   - queries: Set of queries to perform.
-    func start(observer: AnyObserver<ResultType>, disposable: Disposable, queries: [QueryType])
+    func start(publisher: PublishSubject<ResultType>, queries: [QueryType])
     
     /// Stops performing queries.
     func stop()
