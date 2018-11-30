@@ -28,6 +28,7 @@ class ViewController: UIViewController {
             .create(HttpEngine(HTTPMethod.post), { observer -> Disposable in
                 let query = TestHttpQuery()
                 query.argument_name = "argument_value"
+                query.argument_encodable = TestEncodable(name: "encodable_argument_name")
                 query.__header__header_name = "header_value"
                 
                 observer.onNext(query)

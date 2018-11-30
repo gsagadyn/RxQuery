@@ -8,7 +8,6 @@
 import Foundation
 
 public extension RxQuery {
-    
     public func encodeQuery() -> [String: Any] {
         var queryModel = [String: Any]()
         
@@ -24,6 +23,9 @@ public extension RxQuery {
                     queryModel[label] = childValue
                 case let childValue as RxQuery:
                     queryModel[label] = childValue.encodeQuery() as [String: Any]
+                case let childValue as Encodable:
+                    guard let encodedValue = childValue.toJSON() else { continue }
+                    queryModel[label] = encodedValue
                 default:
                     queryModel[label] = (value as Any?)!
                 }
@@ -33,5 +35,16 @@ public extension RxQuery {
         }
         
         return queryModel
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MARK: - Encode to JSON
+// -----------------------------------------------------------------------------
+
+fileprivate extension Encodable {
+    fileprivate func toJSON() -> Any? {
+        let data = (try? JSONEncoder().encode(self)) ?? Data()
+        return try? JSONSerialization.jsonObject(with: data, options: [])
     }
 }

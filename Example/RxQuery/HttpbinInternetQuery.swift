@@ -9,9 +9,14 @@ import Foundation
 import RxQuery
 import Alamofire
 
+struct TestEncodable: Encodable {
+    let name: String
+}
+
 class TestHttpQuery: HttpQuery {
     
     var argument_name: String?
+    var argument_encodable: TestEncodable?
     var __header__header_name: String?
     
     override func url() -> String {
