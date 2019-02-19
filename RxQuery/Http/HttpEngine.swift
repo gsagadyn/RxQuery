@@ -15,7 +15,7 @@ open class HttpEngine: RxEngine {
     public typealias QueryType = HttpQuery
     public typealias ResultType = Foundation.Data
     
-    private var sessionManager: SessionManager?
+    private var sessionManager: Session?
     private var request: DataRequest?
     private var method: HTTPMethod = HTTPMethod.get
     private var publisher: PublishSubject<ResultType>!
@@ -59,7 +59,7 @@ open class HttpEngine: RxEngine {
         let encoding = query?.encoding() ?? URLEncoding.default
         let headers = query?.headers()
         
-        sessionManager = SessionManager.default
+        sessionManager = Session.default
         request = sessionManager!.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
         request!.validate().response { [weak self] in self?.handleInternetResponse($0) }
     }
@@ -68,7 +68,7 @@ open class HttpEngine: RxEngine {
     ///
     /// - parameters:
     ///   - dataResponse: Response representation.
-    open func handleInternetResponse(_ response: Alamofire.DefaultDataResponse) {
+    open func handleInternetResponse(_ response: Alamofire.DataResponse<Data?>) {
         if let error = response.error {
             publisher.onError(error)
         } else {
