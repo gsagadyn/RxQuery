@@ -8,10 +8,10 @@
 import Foundation
 import RxSwift
 
-public extension Observable {
+extension Observable {
     
     /// Defines subscribe closure.
-    typealias SubscribeClosure<T> = (AnyObserver<T>) -> Disposable
+    public typealias SubscribeClosure<T> = (AnyObserver<T>) -> Disposable
     
     /// Creates an observable sequence from a specified subscribe method implementation.
     ///

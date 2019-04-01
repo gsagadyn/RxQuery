@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-public extension RxSwift.ObserverType {
+extension RxSwift.ObserverType {
     
     /// Convenience method equivalent to `on(.next(element: E))` and `on(.completed)`
     ///

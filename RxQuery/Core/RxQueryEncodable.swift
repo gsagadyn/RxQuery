@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension RxQuery {
+extension RxQuery {
     public func encodeQuery() -> [String: Any] {
         var queryModel = [String: Any]()
         
@@ -42,7 +42,7 @@ public extension RxQuery {
 // MARK: - Encode to JSON
 // -----------------------------------------------------------------------------
 
-fileprivate extension Encodable {
+extension Encodable {
     fileprivate func toJSON() -> Any? {
         let data = (try? JSONEncoder().encode(self)) ?? Data()
         return try? JSONSerialization.jsonObject(with: data, options: [])
