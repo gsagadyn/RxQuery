@@ -19,10 +19,11 @@ extension Observable {
     ///   - engine: Engine instance that will perform queries.
     ///   - subscribe: Implementation of the resulting observable sequence's `subscribe` method.
     /// - returns: The observable sequence with the specified implementation for the `subscribe` method.
-    public static func create<T: RxEngine>(_ engine: T, _ subscribe: @escaping SubscribeClosure<T.QueryType>) -> Observable<E> where T.ResultType == E {
+    public static func create<T: RxEngine>(_ engine: T, _ subscribe: @escaping SubscribeClosure<T.QueryType>) -> Observable<Element> where T.ResultType == Element {
         return Observable<T.QueryType>
             .create(subscribe)
             .toArray()
+            .asObservable()
             .flatMap { Observable.create(engine, $0) }
     }
     
@@ -32,7 +33,7 @@ extension Observable {
     ///   - engine: Engine instance that will perform queries.
     ///   - queries: Set of queries that will be performerd by engine.
     /// - returns: The observable sequence with the specified implementation for the `subscribe` method.
-    private static func create<T: RxEngine>(_ engine: T, _ queries: [T.QueryType]) -> Observable<E> where T.ResultType == E {
+    private static func create<T: RxEngine>(_ engine: T, _ queries: [T.QueryType]) -> Observable<Element> where T.ResultType == Element {
         return .create { observer in
             let publisher = PublishSubject<T.ResultType>()
             let disposable = CompositeDisposable()

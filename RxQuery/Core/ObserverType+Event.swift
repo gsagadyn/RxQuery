@@ -10,10 +10,10 @@ import RxSwift
 
 extension RxSwift.ObserverType {
     
-    /// Convenience method equivalent to `on(.next(element: E))` and `on(.completed)`
+    /// Convenience method equivalent to `on(.next(element: Element))` and `on(.completed)`
     ///
     /// - parameter element: Next element to send to observer(s)
-    public func onCompleted(_ element: E) {
+    public func onCompleted(_ element: Element) {
         on(.next(element))
         on(.completed)
     }
