@@ -68,7 +68,7 @@ open class HttpEngine: RxEngine {
     ///
     /// - parameters:
     ///   - dataResponse: Response representation.
-    open func handleInternetResponse(_ response: Alamofire.DataResponse<Data?>) {
+    open func handleInternetResponse(_ response: Alamofire.AFDataResponse<Data?>) {
         if let error = response.error {
             publisher.onError(error)
         } else {

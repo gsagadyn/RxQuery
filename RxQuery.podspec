@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxQuery'
-  s.version          = '1.6.0'
+  s.version          = '1.6.1'
   s.summary          = 'Extension of RxSwift pod'
   s.homepage         = 'https://github.com/gsagadyn/RxQuery'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Http' do |sp|
     sp.source_files = 'RxQuery/Core/**/*', 'RxQuery/Http/**/*'
-    sp.dependency 'Alamofire', '~> 5.0.0-beta.5'
+    sp.dependency 'Alamofire', '~> 5.0.0-rc.1'
   end
 
 end
