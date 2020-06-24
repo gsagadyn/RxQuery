@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxQuery'
-  s.version          = '1.7.0'
+  s.version          = '1.8.0'
   s.summary          = 'Extension of RxSwift pod'
   s.homepage         = 'https://github.com/gsagadyn/RxQuery'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

@@ -36,7 +36,7 @@ class ViewController: UIViewController {
                 return Disposables.create()
             })
             .subscribe(onNext: { (r) in
-                print("response \(r)")
+                print("response \(String(data: r, encoding: .utf8) ?? "")")
             }, onError: { (e) in
                 print("error \(e)")
             }, onCompleted: {

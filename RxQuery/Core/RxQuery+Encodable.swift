@@ -1,5 +1,5 @@
 //
-//  RxQuery.swift
+//  RxQuery+Encodable.swift
 //  RxQuery
 //
 //  Created by Grzegorz Sagadyn on 06.01.2018.
@@ -10,7 +10,7 @@ import Foundation
 extension RxQuery {
     public func encodeQuery() -> [String: Any] {
         var queryModel = [String: Any]()
-        
+
         var mirror: Mirror? = Mirror(reflecting: self)
         while mirror != nil {
             for case let (label?, value) in mirror!.children {
@@ -30,10 +30,10 @@ extension RxQuery {
                     queryModel[label] = (value as Any?)!
                 }
             }
-            
+
             mirror = mirror?.superclassMirror
         }
-        
+
         return queryModel
     }
 }
