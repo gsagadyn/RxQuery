@@ -16,6 +16,6 @@ let package = Package(
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.2.0")),
     ],
     targets: [
-        .target(name: "RxQuery", dependencies: ["Alamofire", "RxSwift", "RxCocoa"], path: "RxQuery")
+        .target(name: "RxQuery", dependencies: ["Alamofire", "RxSwift", .product(name: "RxCocoa", package: "RxSwift")], path: "RxQuery")
     ]
 )
