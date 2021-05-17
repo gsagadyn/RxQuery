@@ -8,4 +8,4 @@
 import Foundation
 
 /// Represents Query that can be performed by Engine.
-public protocol RxQuery: class { }
+public protocol RxQuery: AnyObject { }
